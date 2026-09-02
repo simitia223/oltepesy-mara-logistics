@@ -28,10 +28,10 @@ export function Reveal({
           io.disconnect();
         }
       },
-      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" },
+      { threshold: 0, rootMargin: "0px 0px 240px 0px" },
     );
     io.observe(el);
-    const fallback = window.setTimeout(() => setVisible(true), 2000);
+    const fallback = window.setTimeout(() => setVisible(true), 900);
     return () => {
       io.disconnect();
       window.clearTimeout(fallback);

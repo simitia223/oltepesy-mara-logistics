@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { MessageCircle } from "lucide-react";
 import { nav, primaryCta, site, whatsappLink } from "@/lib/site";
 import { Logo } from "./Logo";
 import { ButtonLink } from "@/components/ui/Button";
@@ -39,7 +40,7 @@ export function Header() {
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-5 sm:px-8">
         <Logo onNavigate={closeMenu} />
 
-        <nav className="hidden items-center gap-0.5 xl:flex">
+        <nav className="hidden items-center gap-1 lg:flex">
           {nav.map((item) => {
             const active =
               item.href === "/"
@@ -50,7 +51,7 @@ export function Header() {
                 key={item.href}
                 href={item.href}
                 aria-current={active ? "page" : undefined}
-                className={`rounded-full px-3 py-2 text-sm transition-colors ${
+                className={`rounded-full px-3.5 py-2 text-sm transition-colors ${
                   active ? "text-fg" : "text-muted hover:text-fg"
                 }`}
               >
@@ -60,7 +61,7 @@ export function Header() {
           })}
         </nav>
 
-        <div className="hidden xl:block">
+        <div className="hidden lg:block">
           <ButtonLink href={primaryCta.href} size="md">
             {primaryCta.label}
           </ButtonLink>
@@ -69,7 +70,7 @@ export function Header() {
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
-          className="grid h-10 w-10 place-items-center rounded-lg border border-line-strong text-fg xl:hidden"
+          className="grid h-10 w-10 place-items-center rounded-lg border border-line-strong text-fg lg:hidden"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
         >
@@ -94,7 +95,7 @@ export function Header() {
       </div>
 
       {open && (
-        <div className="xl:hidden">
+        <div className="lg:hidden">
           <nav className="flex flex-col gap-1 border-t border-line bg-ink px-5 pb-8 pt-4 sm:px-8">
             {nav.map((item) => (
               <Link
@@ -119,9 +120,10 @@ export function Header() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={closeMenu}
-              className="mt-3 inline-flex w-full items-center justify-center rounded-full border border-line-strong px-5 py-3 text-sm font-medium text-fg"
+              className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-full border border-line-strong px-5 py-3 text-sm font-medium text-fg"
             >
-              Chat on WhatsApp
+              <MessageCircle className="h-4 w-4" aria-hidden />
+              WhatsApp OLTEPESY
             </a>
             <a href={`mailto:${site.email}`} className="mt-4 px-3 text-sm text-muted">
               {site.email}

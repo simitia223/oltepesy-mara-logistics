@@ -2,12 +2,14 @@ export const site = {
   name: "Oltepesy Mara Logistics",
   shortName: "Oltepesy",
   descriptor: "Mara Logistics",
-  tagline: "They buy. We collect. We deliver.",
-  route: "Narok Town → Maasai Mara",
+  tagline: "You buy. We collect. We deliver.",
+  route: "Nairobi & Narok → Maasai Mara",
+  routeShort: "Nairobi · Narok → Mara",
+  origins: ["Nairobi", "Narok Town"],
   domain: "oltepesymaralogistics.co.ke",
   url: "https://oltepesymaralogistics.co.ke",
   description:
-    "Oltepesy Mara Logistics runs reliable B2B deliveries between Narok Town and the Maasai Mara. You buy from your own supplier — we collect the ready order in Narok and deliver it to your camp, lodge, hotel or business in the Mara.",
+    "Reliable supply transport from Nairobi and Narok to the Maasai Mara. OLTEPESY collects goods from your preferred suppliers and delivers them to camps, lodges, hotels and businesses in the Mara.",
 
   // WhatsApp — shared line (also Oltepesy Agency's WhatsApp). International format, digits only.
   whatsappNumber: "254741619743",
@@ -17,12 +19,12 @@ export const site = {
   email: "oltepesymaralogistics@gmail.com",
 
   location: "Narok Town, Narok County, Kenya",
-  collectionPoint: "Narok Town",
+  collectionPoint: "Nairobi & Narok Town",
   destination: "Maasai Mara",
 };
 
 export const WHATSAPP_DEFAULT_MESSAGE =
-  "Hello Oltepesy, I'd like to enquire about a delivery from Narok Town to the Maasai Mara.";
+  "Hello OLTEPESY, I would like to request a delivery from Nairobi / Narok to the Mara.";
 
 export function whatsappLink(message: string = WHATSAPP_DEFAULT_MESSAGE) {
   const digits = site.whatsappNumber.replace(/\D/g, "");
@@ -30,15 +32,27 @@ export function whatsappLink(message: string = WHATSAPP_DEFAULT_MESSAGE) {
   return `${base}?text=${encodeURIComponent(message)}`;
 }
 
+/** Primary navigation — kept short and confident. */
 export const nav = [
   { label: "Home", href: "/" },
   { label: "Services", href: "/services" },
   { label: "How It Works", href: "/how-it-works" },
-  { label: "Coverage", href: "/coverage" },
-  { label: "For Businesses", href: "/for-businesses" },
+  { label: "Business", href: "/for-businesses" },
+  { label: "FAQ", href: "/faq" },
+];
+
+/** Everything, for the footer. */
+export const footerNav = [
+  { label: "Home", href: "/" },
+  { label: "Services", href: "/services" },
+  { label: "How It Works", href: "/how-it-works" },
+  { label: "Business Accounts", href: "/for-businesses" },
   { label: "Pricing", href: "/pricing" },
+  { label: "Coverage", href: "/coverage" },
+  { label: "FAQ", href: "/faq" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
+  { label: "Book a Delivery", href: "/book" },
 ];
 
 export const primaryCta = { label: "Book a Delivery", href: "/book" };

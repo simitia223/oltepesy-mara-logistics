@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 @theme {
+  /* Surfaces — deep charcoal / near-black */
   --color-ink: #0b0a09;
   --color-ink-soft: #121110;
   --color-surface: #1a1815;
@@ -8,14 +9,19 @@
   --color-line: rgba(231, 216, 191, 0.1);
   --color-line-strong: rgba(231, 216, 191, 0.2);
 
+  /* Foreground — warm cream / sand */
   --color-fg: #ece4d6;
   --color-muted: #9a9083;
   --color-sand: #e7d8bf;
 
+  /* Accent — warm clay/amber (used sparingly) */
   --color-clay: #cf7a4a;
   --color-clay-soft: #dc8a54;
   --color-clay-dim: rgba(207, 122, 74, 0.14);
+
+  /* Secondary — muted acacia green (status / confirmation) */
   --color-acacia: #7c9a68;
+  --color-acacia-dim: rgba(124, 154, 104, 0.14);
 
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-display), var(--font-inter), ui-sans-serif, sans-serif;
@@ -44,6 +50,7 @@ body {
   color: #1c1108;
 }
 
+/* Ambient grid + glows */
 .bg-grid {
   background-image:
     linear-gradient(to right, var(--color-line) 1px, transparent 1px),
@@ -60,11 +67,29 @@ body {
   );
 }
 
+.bg-dune {
+  background-image:
+    radial-gradient(1200px 420px at 12% -10%, rgba(207, 122, 74, 0.09), transparent 60%),
+    radial-gradient(900px 500px at 100% 0%, rgba(124, 154, 104, 0.06), transparent 55%);
+}
+
 .text-gradient {
   background: linear-gradient(180deg, #fff 0%, var(--color-sand) 55%, var(--color-clay-soft) 130%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
+/* Photo placeholder — used until real photography is supplied */
+.photo-placeholder {
+  background-color: var(--color-surface);
+  background-image:
+    linear-gradient(135deg, rgba(231, 216, 191, 0.03) 25%, transparent 25%),
+    linear-gradient(225deg, rgba(231, 216, 191, 0.03) 25%, transparent 25%),
+    linear-gradient(45deg, rgba(231, 216, 191, 0.03) 25%, transparent 25%),
+    linear-gradient(315deg, rgba(231, 216, 191, 0.03) 25%, transparent 25%);
+  background-size: 26px 26px;
+  background-position: 0 0, 13px 0, 13px -13px, 0 13px;
 }
 
 /* Route line that draws itself */
@@ -96,7 +121,7 @@ body {
   to { transform: translateX(-50%); }
 }
 .animate-marquee {
-  animation: marquee 28s linear infinite;
+  animation: marquee 34s linear infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {

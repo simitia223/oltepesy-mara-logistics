@@ -2,33 +2,44 @@ import type { Metadata } from "next";
 import { PageHeader } from "@/components/marketing/PageHeader";
 import { Section } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
+import { IconTile } from "@/components/ui/Card";
 import { ButtonLink } from "@/components/ui/Button";
 import { CtaBand } from "@/components/marketing/CtaBand";
-import { priceFactors, priceBands, faqs } from "@/lib/content";
-import { primaryCta } from "@/lib/site";
+import { priceFactors, priceTiers, faqs } from "@/lib/content";
+import { primaryCta, whatsappLink } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Pricing",
   description:
-    "Delivery pricing that fits your load. Each Narok to Mara delivery is quoted on size, weight, destination, schedule and urgency — request a quote.",
+    "Delivery pricing that fits your load. Each delivery into the Mara from Nairobi or Narok is quoted on size, weight, destination, schedule and urgency — request a quote.",
 };
 
 const pricingFaqs = faqs.filter((f) =>
-  ["How is pricing worked out?", "Do you buy the goods for me?", "How do I book?"].includes(
-    f.q,
-  ),
+  [
+    "How is delivery pricing calculated?",
+    "Do you buy the goods for us?",
+    "Can you collect from multiple suppliers?",
+    "How do I book?",
+  ].includes(f.q),
 );
+
+function tierHref(cta: string) {
+  if (cta === "Talk to us") return "/for-businesses";
+  if (cta === "Priority quotation")
+    return whatsappLink("Hello OLTEPESY, I need an express delivery into the Mara.");
+  return "/contact";
+}
 
 export default function PricingPage() {
   return (
     <>
       <PageHeader
         eyebrow="Pricing"
-        title="Pricing that fits the load."
-        intro="We don't publish flat rates because no two deliveries are the same. Tell us what's moving and where, and you get a clear price before anything is collected."
+        title="Delivery pricing that fits your load."
+        intro="We're not secretive about pricing — but we don't force fixed prices, because delivery costs genuinely vary. Tell us what's moving and where, and you get a clear quote before anything is collected."
       >
         <ButtonLink href={primaryCta.href} size="lg">
-          Request a quote
+          Get a Delivery Quote
         </ButtonLink>
       </PageHeader>
 
@@ -54,26 +65,36 @@ export default function PricingPage() {
 
       <Section className="border-t border-line bg-ink-soft">
         <h2 className="font-display text-2xl font-semibold text-fg">
-          Where your delivery is likely to sit
+          Choose the delivery that fits
         </h2>
         <p className="mt-3 max-w-2xl text-sm text-muted">
-          Indicative categories only — not prices. Your quote is confirmed for
-          your specific order.
+          Four ways to move an order. Each one is quoted for your specific load —
+          you always see the price before the delivery is confirmed.
         </p>
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {priceBands.map((b, i) => (
+          {priceTiers.map((t, i) => (
             <Reveal
-              key={b.name}
+              key={t.name}
               delay={(i % 4) * 60}
               className="flex h-full flex-col rounded-2xl border border-line bg-surface/50 p-6"
             >
-              <h3 className="font-display text-lg font-semibold text-fg">
-                {b.name}
+              <IconTile name={t.icon} />
+              <h3 className="mt-4 font-display text-lg font-semibold text-fg">
+                {t.name}
               </h3>
-              <p className="mt-1 text-sm font-medium text-clay">{b.forWho}</p>
-              <p className="mt-3 text-sm leading-relaxed text-muted">
-                {b.examples}
+              <p className="mt-1 text-sm font-medium text-clay">{t.forWho}</p>
+              <p className="mt-3 flex-1 text-sm leading-relaxed text-muted">
+                {t.examples}
               </p>
+              <ButtonLink
+                href={tierHref(t.cta)}
+                variant="outline"
+                size="md"
+                className="mt-5 w-full"
+                external={t.cta === "Priority quotation"}
+              >
+                {t.cta}
+              </ButtonLink>
             </Reveal>
           ))}
         </div>
@@ -102,8 +123,8 @@ export default function PricingPage() {
       </Section>
 
       <CtaBand
-        title="Request a delivery quote"
-        text="Send your order details and destination. We'll come back with a price and a delivery arrangement — no obligation."
+        title="Get a delivery quote"
+        text="Send your order details and destination. We'll come back with a price and a delivery arrangement — no obligation, and nothing is confirmed until you accept."
       />
     </>
   );

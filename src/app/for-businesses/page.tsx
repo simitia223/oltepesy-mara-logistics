@@ -2,46 +2,48 @@ import type { Metadata } from "next";
 import { PageHeader } from "@/components/marketing/PageHeader";
 import { Section } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
+import { IconTile } from "@/components/ui/Card";
 import { ButtonLink } from "@/components/ui/Button";
 import { CtaBand } from "@/components/marketing/CtaBand";
 import { businessBenefits, segments } from "@/lib/content";
 import { whatsappLink } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "For Businesses",
+  title: "Business Accounts",
   description:
-    "Business accounts for camps, lodges, hotels and operators that resupply from Narok every week — scheduled runs, one contact, monthly invoicing.",
+    "Business accounts for camps, lodges, hotels and operators that resupply from Nairobi or Narok every week — scheduled runs, one contact, proof of delivery, monthly invoicing.",
 };
+
+const accountWhatsapp = whatsappLink(
+  "Hello OLTEPESY, I'd like to request a business account for regular deliveries into the Mara.",
+);
 
 export default function ForBusinessesPage() {
   return (
     <>
       <PageHeader
-        eyebrow="For businesses"
-        title="Turn resupply into a scheduled service."
-        intro="A business account is for properties that move supplies from Narok regularly. Instead of arranging every trip, you get a fixed schedule, one point of contact and a single monthly invoice."
+        eyebrow="Business accounts"
+        title="Your logistics partner in the Mara."
+        intro="For businesses that need more than a one-off delivery. If you resupply from Nairobi or Narok every week, an account turns delivery from a scramble into a scheduled, invoiced service with one point of contact."
       >
-        <ButtonLink
-          href={whatsappLink(
-            "Hi Oltepesy, I'd like to open a business account for regular Narok to Mara deliveries.",
-          )}
-          size="lg"
-          external
-        >
-          Open a business account
+        <ButtonLink href={accountWhatsapp} size="lg" external>
+          Request a Business Account
         </ButtonLink>
       </PageHeader>
 
       <Section>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <h2 className="font-display text-2xl font-semibold text-fg">
+          What a business account gives you
+        </h2>
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {businessBenefits.map((b, i) => (
             <Reveal
               key={b.title}
-              delay={(i % 3) * 70}
+              delay={(i % 4) * 60}
               className="rounded-2xl border border-line bg-surface/60 p-6"
             >
-              <span className="text-xl">{b.icon}</span>
-              <h3 className="mt-3 font-display text-base font-semibold text-fg">
+              <IconTile name={b.icon} />
+              <h3 className="mt-3 font-display text-sm font-semibold text-fg">
                 {b.title}
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-muted">{b.text}</p>
@@ -51,9 +53,7 @@ export default function ForBusinessesPage() {
       </Section>
 
       <Section className="border-t border-line bg-ink-soft">
-        <h2 className="font-display text-3xl font-semibold text-fg">
-          Who it suits
-        </h2>
+        <h2 className="font-display text-2xl font-semibold text-fg">Who it suits</h2>
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {segments.map((s, i) => (
             <Reveal
@@ -61,7 +61,7 @@ export default function ForBusinessesPage() {
               delay={(i % 3) * 60}
               className="rounded-2xl border border-line bg-surface/50 p-6"
             >
-              <span className="text-xl">{s.icon}</span>
+              <IconTile name={s.icon} />
               <h3 className="mt-3 font-display text-base font-semibold text-fg">
                 {s.title}
               </h3>
@@ -72,9 +72,7 @@ export default function ForBusinessesPage() {
       </Section>
 
       <Section>
-        <h2 className="font-display text-2xl font-semibold text-fg">
-          Getting set up
-        </h2>
+        <h2 className="font-display text-2xl font-semibold text-fg">Getting set up</h2>
         <ol className="mt-8 grid gap-4 sm:grid-cols-3">
           {[
             ["Tell us your pattern", "Which suppliers, how often, roughly what volume."],
@@ -97,8 +95,8 @@ export default function ForBusinessesPage() {
       </Section>
 
       <CtaBand
-        title="Set up your delivery schedule"
-        text="Tell us your suppliers, your frequency and your property. We'll propose a schedule and rates for your regular runs."
+        title="Request a business account"
+        text="Tell us your suppliers, your frequency and your property. We'll propose a schedule and rates for your regular runs — no commitment until you're happy with it."
       />
     </>
   );

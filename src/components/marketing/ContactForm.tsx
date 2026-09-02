@@ -76,7 +76,7 @@ ${form.message || "—"}`;
         <span className="mb-1.5 block text-xs uppercase tracking-[0.14em] text-muted">
           Message
         </span>
-        <textarea value={form.message} onChange={set("message")} rows={4} className={inputCls} placeholder="Tell us about your property and how often you resupply from Narok…" />
+        <textarea value={form.message} onChange={set("message")} rows={4} className={inputCls} placeholder="Tell us about your property and how often you resupply from Nairobi or Narok…" />
       </label>
       <Button type="submit" size="lg" className="w-full">
         Send message

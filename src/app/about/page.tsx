@@ -8,7 +8,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Oltepesy Mara Logistics makes the movement of supplies between Narok Town and the Maasai Mara simpler, more reliable and better organised for hospitality businesses.",
+    "OLTEPESY Mara Logistics makes the movement of supplies from Nairobi and Narok Town to the Maasai Mara simpler, more reliable and better organised for hospitality businesses.",
 };
 
 const values = [
@@ -21,8 +21,8 @@ const values = [
     text: "You choose your suppliers and pay them directly. We move goods — we don't get between you and your buying.",
   },
   {
-    title: "One route, run well",
-    text: "Focus on the Narok–Mara corridor is what keeps deliveries dependable and pricing fair.",
+    title: "One job, done well",
+    text: "Focus on the run into the Mara from Nairobi and Narok is what keeps deliveries dependable and pricing fair.",
   },
   {
     title: "Within the rules",
@@ -36,7 +36,7 @@ export default function AboutPage() {
       <PageHeader
         eyebrow="About"
         title="Built for the businesses that keep the Mara moving."
-        intro="Oltepesy Mara Logistics exists to take one recurring job off hospitality teams: getting paid-for supplies from a Narok counter to a property in the reserve."
+        intro="OLTEPESY Mara Logistics exists to take one recurring job off hospitality teams: getting paid-for supplies from a Nairobi or Narok counter to a property in the reserve."
       />
 
       <Section>
@@ -44,17 +44,18 @@ export default function AboutPage() {
           <Reveal className="space-y-4 text-base leading-relaxed text-muted">
             <p>
               Every camp, lodge and hotel in the Mara depends on a steady flow of
-              supplies from Narok Town — fresh food, water, beverages, cleaning
-              and housekeeping stock, kitchen equipment and spare parts. Getting
-              those supplies from a supplier&apos;s counter to a property in the
-              reserve is its own job, and it usually lands on staff who already
-              have plenty to do.
+              supplies from Nairobi and Narok Town — fresh food, water, beverages,
+              cleaning and housekeeping stock, kitchen equipment and spare parts.
+              Getting those supplies from a supplier&apos;s counter to a property
+              in the reserve is its own job, and it usually lands on staff who
+              already have plenty to do.
             </p>
             <p>
               We take that job on. Customers keep full control of what they buy
               and who they buy it from. Once an order is paid for and ready, we
-              collect it in Narok, consolidate it with other deliveries heading
-              the same way, and transport it safely to the property.
+              collect it in Nairobi or Narok, consolidate it with other
+              deliveries heading the same way, and transport it safely to the
+              property.
             </p>
             <p>
               The model is deliberately simple:{" "}
@@ -65,10 +66,10 @@ export default function AboutPage() {
               customers, and we don&apos;t carry restricted or prohibited items.
             </p>
             <p>
-              We&apos;re starting with one route and doing it well. As demand
-              grows we&apos;ll extend to more hospitality destinations — but the
-              priority stays the same: reliable, organised delivery that
-              businesses can plan around.
+              We&apos;re focused on one job and doing it well: moving supplies
+              into the Mara from Nairobi and Narok. As demand grows we&apos;ll
+              extend to more hospitality destinations — but the priority stays the
+              same: reliable, organised delivery that businesses can plan around.
             </p>
           </Reveal>
 

@@ -4,6 +4,7 @@ import "./globals.css";
 import { site } from "@/lib/site";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
+import { FloatingCta } from "@/components/site/FloatingCta";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -18,24 +19,29 @@ const display = Archivo({
   weight: ["500", "600", "700"],
 });
 
-const pageTitle = `${site.name} — Narok to Maasai Mara Delivery`;
+const pageTitle =
+  "OLTEPESY Mara Logistics | Nairobi & Narok to Maasai Mara Delivery";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
     default: pageTitle,
-    template: `%s — ${site.shortName} ${site.descriptor}`,
+    template: `%s | ${site.shortName} ${site.descriptor}`,
   },
   description: site.description,
+  applicationName: site.name,
   keywords: [
     "Narok to Maasai Mara delivery",
+    "Nairobi to Maasai Mara delivery",
     "Mara logistics",
     "Maasai Mara supply delivery",
     "Narok logistics company",
     "safari camp supplies delivery Kenya",
     "Mara hospitality logistics",
+    "Nairobi to Mara transport",
     "Narok to Mara transport",
   ],
+  authors: [{ name: site.name }],
   openGraph: {
     type: "website",
     title: pageTitle,
@@ -49,6 +55,7 @@ export const metadata: Metadata = {
     title: pageTitle,
     description: site.description,
   },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -58,9 +65,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${inter.variable} ${display.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-ink text-fg">
+        <noscript>
+          <style>{`.reveal{opacity:1!important;transform:none!important}`}</style>
+        </noscript>
         <Header />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1 pb-24 lg:pb-0">{children}</main>
         <Footer />
+        <FloatingCta />
       </body>
     </html>
   );

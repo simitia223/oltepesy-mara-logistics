@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { MessageCircle, Phone, Mail, MapPin } from "lucide-react";
 import { PageHeader } from "@/components/marketing/PageHeader";
 import { Section } from "@/components/ui/Section";
 import { ContactForm } from "@/components/marketing/ContactForm";
@@ -8,7 +9,7 @@ import { site, whatsappLink, primaryCta } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Reach Oltepesy Mara Logistics by WhatsApp, phone or email. Based in Narok Town, Narok County, Kenya.",
+    "Reach OLTEPESY Mara Logistics by WhatsApp, phone or email. Deliveries into the Maasai Mara from Nairobi and Narok Town.",
 };
 
 export default function ContactPage() {
@@ -16,7 +17,7 @@ export default function ContactPage() {
     <>
       <PageHeader
         eyebrow="Contact"
-        title="Talk to Oltepesy."
+        title="Talk to OLTEPESY."
         intro="The fastest way to reach us is WhatsApp. For a fuller enquiry or a business account, send a message and we'll get back to you."
       />
 
@@ -26,9 +27,12 @@ export default function ContactPage() {
 
           <div className="space-y-4">
             <div className="rounded-2xl border border-line bg-surface/50 p-7">
-              <h2 className="font-display text-lg font-semibold text-fg">
-                WhatsApp
-              </h2>
+              <div className="flex items-center gap-2.5">
+                <MessageCircle className="h-5 w-5 text-acacia" aria-hidden />
+                <h2 className="font-display text-lg font-semibold text-fg">
+                  WhatsApp
+                </h2>
+              </div>
               <p className="mt-2 text-sm text-muted">
                 Enquiries, quick questions and delivery updates.
               </p>
@@ -38,29 +42,30 @@ export default function ContactPage() {
                 rel="noopener noreferrer"
                 className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-clay px-5 py-3 text-sm font-medium text-[#1c1108] transition-colors hover:bg-clay-soft"
               >
-                Chat on WhatsApp
+                WhatsApp OLTEPESY
               </a>
             </div>
 
             <div className="rounded-2xl border border-line bg-surface/50 p-7 text-sm">
               <h2 className="font-display text-lg font-semibold text-fg">Direct</h2>
-              <ul className="mt-4 space-y-2.5 text-muted">
-                <li>
+              <ul className="mt-4 space-y-3 text-muted">
+                <li className="flex items-center gap-2.5">
+                  <Phone className="h-4 w-4 shrink-0 text-clay" aria-hidden />
                   <a href={site.phoneHref} className="hover:text-fg">
                     {site.phoneDisplay}
                   </a>
                 </li>
-                <li>
+                <li className="flex items-center gap-2.5">
+                  <Mail className="h-4 w-4 shrink-0 text-clay" aria-hidden />
                   <a href={`mailto:${site.email}`} className="hover:text-fg">
                     {site.email}
                   </a>
                 </li>
-                <li>{site.location}</li>
+                <li className="flex items-start gap-2.5">
+                  <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-clay" aria-hidden />
+                  {site.location}
+                </li>
               </ul>
-              <p className="mt-4 text-xs text-muted/70">
-                Contact details are placeholders until the business number and
-                inbox are confirmed.
-              </p>
             </div>
 
             <div className="rounded-2xl border border-clay/30 bg-clay-dim p-7">
