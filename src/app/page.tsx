@@ -1,5 +1,6 @@
 import { Hero } from "@/components/home/Hero";
-import { TrustBar, BusinessCategoryBand } from "@/components/home/TrustBar";
+import { TrustBar } from "@/components/home/TrustBar";
+import { ReviewsBand } from "@/components/home/ReviewsBand";
 import {
   ModelStrip,
   Problem,
@@ -32,7 +33,7 @@ export default function HomePage() {
       <ForBusinesses />
       <TrustGrid />
       <Segments />
-      <BusinessCategoryBand />
+      <ReviewsBand />
       <FaqPreview />
       <CtaBand
         title="Need supplies moved to the Mara?"

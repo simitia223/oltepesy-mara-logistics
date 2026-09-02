@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Review moderation — OLTEPESY</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 24px; font: 15px/1.5 system-ui, sans-serif;
+    background: #0b0a09; color: #ece4d6; max-width: 780px; margin-inline: auto;
+  }
+  h1 { font-size: 20px; margin: 0 0 4px; }
+  p.sub { color: #9a9083; margin: 0 0 20px; }
+  input[type=password], input[type=text] {
+    width: 100%; padding: 10px 12px; border-radius: 10px;
+    border: 1px solid #3a332a; background: #161310; color: #ece4d6; font: inherit;
+  }
+  button {
+    padding: 8px 14px; border-radius: 999px; border: 1px solid #3a332a;
+    background: #161310; color: #ece4d6; font: inherit; cursor: pointer;
+  }
+  button.primary { background: #cf7a4a; color: #1c1108; border-color: #cf7a4a; font-weight: 600; }
+  button.danger { border-color: #6b3a3a; color: #e6a0a0; }
+  button.ok { border-color: #4a6b3a; color: #a7c98f; }
+  .card { border: 1px solid #2a251d; border-radius: 14px; padding: 16px; margin: 12px 0; background: #121110; }
+  .stars { color: #cf7a4a; letter-spacing: 2px; }
+  .meta { color: #9a9083; font-size: 13px; margin-top: 6px; }
+  .row { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+  .muted { color: #9a9083; }
+  .section-title { margin: 28px 0 6px; font-size: 13px; text-transform: uppercase; letter-spacing: 2px; color: #9a9083; }
+  blockquote { margin: 8px 0 0; }
+</style>
+</head>
+<body>
+  <h1>Review moderation</h1>
+  <p class="sub">OLTEPESY Mara Logistics — approve or reject submitted reviews.</p>
+
+  <label>
+    Moderation token
+    <input id="token" type="password" placeholder="paste token" autocomplete="off" />
+  </label>
+  <div class="row">
+    <button class="primary" id="load">Load reviews</button>
+    <span id="status" class="muted"></span>
+  </div>
+
+  <div id="pending"></div>
+  <div id="approved"></div>
+
+<script>
+  const $ = (s) => document.querySelector(s);
+  const stars = (n) => "★".repeat(n) + "☆".repeat(5 - n);
+  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+  function token() { return $("#token").value.trim(); }
+
+  async function api(method, body) {
+    const url = "/api/admin?token=" + encodeURIComponent(token());
+    const res = await fetch(url, {
+      method,
+      headers: body ? { "content-type": "application/json" } : undefined,
+      body: body ? JSON.stringify(body) : undefined,
+    });
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    return res.json();
+  }
+
+  function card(r, isPending) {
+    const el = document.createElement("div");
+    el.className = "card";
+    el.innerHTML =
+      '<div class="stars">' + stars(r.rating) + "</div>" +
+      "<blockquote>" + esc(r.text) + "</blockquote>" +
+      '<div class="meta">' + esc(r.name) + (r.business ? " · " + esc(r.business) : "") +
+      " — " + new Date(r.createdAt).toLocaleString() + "</div>";
+    const row = document.createElement("div");
+    row.className = "row";
+    if (isPending) {
+      const ok = document.createElement("button");
+      ok.className = "ok"; ok.textContent = "Approve";
+      ok.onclick = () => act(r.id, "approve", el);
+      row.appendChild(ok);
+    }
+    const no = document.createElement("button");
+    no.className = "danger"; no.textContent = isPending ? "Reject" : "Delete";
+    no.onclick = () => act(r.id, "reject", el);
+    row.appendChild(no);
+    el.appendChild(row);
+    return el;
+  }
+
+  async function act(id, action, el) {
+    try {
+      await api("POST", { id, action });
+      el.remove();
+      $("#status").textContent = "Saved.";
+    } catch (e) {
+      $("#status").textContent = "Failed: " + e.message;
+    }
+  }
+
+  async function load() {
+    $("#status").textContent = "Loading…";
+    $("#pending").innerHTML = "";
+    $("#approved").innerHTML = "";
+    try {
+      const data = await api("GET");
+      $("#status").textContent =
+        data.pending.length + " pending · " + data.approved.length + " published";
+      const ph = document.createElement("div");
+      ph.className = "section-title";
+      ph.textContent = "Pending (" + data.pending.length + ")";
+      $("#pending").appendChild(ph);
+      if (!data.pending.length) $("#pending").insertAdjacentHTML("beforeend", '<p class="muted">Nothing waiting.</p>');
+      data.pending.forEach((r) => $("#pending").appendChild(card(r, true)));
+
+      const ah = document.createElement("div");
+      ah.className = "section-title";
+      ah.textContent = "Published (" + data.approved.length + ")";
+      $("#approved").appendChild(ah);
+      data.approved.forEach((r) => $("#approved").appendChild(card(r, false)));
+
+      localStorage.setItem("olp_admin_token", token());
+    } catch (e) {
+      $("#status").textContent = "Error: " + e.message + " (check the token)";
+    }
+  }
+
+  $("#load").onclick = load;
+  $("#token").value = localStorage.getItem("olp_admin_token") || "";
+</script>
+</body>
+</html>

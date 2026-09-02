@@ -38,6 +38,7 @@ export const nav = [
   { label: "Services", href: "/services" },
   { label: "How It Works", href: "/how-it-works" },
   { label: "Business", href: "/for-businesses" },
+  { label: "Reviews", href: "/reviews" },
   { label: "FAQ", href: "/faq" },
 ];
 
@@ -49,6 +50,7 @@ export const footerNav = [
   { label: "Business Accounts", href: "/for-businesses" },
   { label: "Pricing", href: "/pricing" },
   { label: "Coverage", href: "/coverage" },
+  { label: "Reviews", href: "/reviews" },
   { label: "FAQ", href: "/faq" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
