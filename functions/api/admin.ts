@@ -4,7 +4,6 @@ import type { Review } from "./reviews";
 
 interface Env {
   REVIEWS: KVNamespace;
-  ADMIN_TOKEN: string;
 }
 
 const json = (data: unknown, status = 200) =>
@@ -16,15 +15,16 @@ const json = (data: unknown, status = 200) =>
     },
   });
 
-function authed(request: Request, env: Env) {
+async function authed(request: Request, env: Env) {
   const url = new URL(request.url);
-  const token = (
+  const provided = (
     url.searchParams.get("token") ||
     request.headers.get("x-admin-token") ||
     ""
   ).trim();
-  const expected = (env.ADMIN_TOKEN ?? "").trim();
-  return expected.length > 0 && token === expected;
+  if (!provided) return false;
+  const expected = ((await env.REVIEWS.get("config:admin-token")) ?? "").trim();
+  return expected.length > 0 && provided === expected;
 }
 
 async function allReviews(env: Env) {
@@ -39,7 +39,7 @@ async function allReviews(env: Env) {
 
 /** List every review (pending + approved). Token required. */
 export const onRequestGet: PagesFunction<Env> = async ({ request, env }) => {
-  if (!authed(request, env)) return json({ error: "Unauthorized" }, 401);
+  if (!(await authed(request, env))) return json({ error: "Unauthorized" }, 401);
   const reviews = await allReviews(env);
   return json({
     pending: reviews.filter((r) => r.status === "pending"),
@@ -49,7 +49,7 @@ export const onRequestGet: PagesFunction<Env> = async ({ request, env }) => {
 
 /** { id, action: "approve" | "reject" }. Token required. */
 export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
-  if (!authed(request, env)) return json({ error: "Unauthorized" }, 401);
+  if (!(await authed(request, env))) return json({ error: "Unauthorized" }, 401);
 
   let body: { id?: string; action?: string };
   try {

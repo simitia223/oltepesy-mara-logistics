@@ -2,7 +2,6 @@
 
 interface Env {
   REVIEWS: KVNamespace;
-  ADMIN_TOKEN: string;
 }
 
 export interface Review {
