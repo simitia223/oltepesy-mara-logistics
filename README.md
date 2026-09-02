@@ -1,18 +1,32 @@
-# Oltepesy Mara Logistics
+# OLTEPESY Mara Logistics
 
-Marketing site for **Oltepesy Mara Logistics** — a B2B delivery company running the
-**Narok Town → Maasai Mara** route for camps, lodges, hotels, restaurants, tour
-operators and Airbnbs.
+Marketing site for **OLTEPESY Mara Logistics** — a B2B delivery company moving
+supplies **from Nairobi and Narok Town to the Maasai Mara** for camps, lodges,
+hotels, restaurants, tour operators and other businesses.
 
-Model: **They buy. We collect. We deliver.** Customers buy their own goods from
-their own supplier in Narok; Oltepesy collects the ready, paid-for order and
-delivers it to the property in the Mara. Oltepesy does **not** buy goods for
+Model: **You buy. We collect. We deliver.** Customers buy and pay their own
+supplier (in Nairobi or Narok); OLTEPESY collects the ready, paid-for order and
+delivers it to the property in the Mara. OLTEPESY does **not** buy goods for
 customers and does not carry restricted goods.
 
 > Separate from `oltepesy-ai-agency` (the AI/digital agency) — different business,
 > different site.
 
-Built with **Next.js 16 (App Router) + Tailwind CSS v4 + TypeScript**.
+Built with **Next.js 16 (App Router) + Tailwind CSS v4 + TypeScript + lucide-react**.
+
+## Photography
+
+Real photos aren't in yet. `src/components/ui/Photo.tsx` renders labelled
+placeholders describing the shot that belongs in each slot. To use a real image:
+drop the file in `public/photos/` and pass `src="/photos/your-file.jpg"` to the
+`<Photo>` in question (hero background, Problem section, Proof section, etc.).
+
+## Contact / brand config
+
+Everything is in `src/lib/site.ts` — WhatsApp `254741619743`, phone
+`+254 728 073 497`, email `oltepesymaralogistics@gmail.com`, domain
+`oltepesymaralogistics.co.ke`. Route text via `route` / `routeShort` / `origins`.
+Copy, services, FAQs, pricing tiers, etc. live in `src/lib/content.ts`.
 
 ## Develop
 
@@ -27,17 +41,20 @@ npm run lint
 
 | Route | Purpose |
 | --- | --- |
-| `/` | Home — hero + route visual, model strip, problem, services, how it works, what we move, coverage, for businesses, who we serve, FAQ, CTA |
+| `/` | Home — hero + route card, model strip, problem, how it works, services, what we move, delivery status, proof of delivery, coverage, business accounts, trust grid, who we serve, business categories, FAQ preview, CTA |
 | `/services` | Scheduled / Bulk / Express / Business / Return logistics |
-| `/how-it-works` | 4-step process + delivery status stages |
-| `/coverage` | Narok → Mara corridor, collection points, delivery zones, timing |
+| `/how-it-works` | 4-step process + route band + delivery status timeline |
 | `/for-businesses` | Business-account benefits, who it suits, setup |
-| `/pricing` | Quote-based — factors, indicative load bands, pricing FAQ |
+| `/pricing` | 4 named tiers (Scheduled / Standard / Express / Business Account), each with a CTA |
+| `/coverage` | Nairobi & Narok collection, Mara delivery, timing |
+| `/faq` | Full FAQ accordion |
 | `/about` | Story + values |
 | `/contact` | Contact form (mailto + WhatsApp) + direct details |
-| `/book` | **Book a Delivery** — request form → reference number → WhatsApp/email handoff |
+| `/book` | **Book a Delivery** — grouped request form → reference number → WhatsApp/email handoff |
 
-Plus `sitemap.xml`, `robots.txt`, `not-found`.
+Nav is `Home / Services / How It Works / Business / FAQ` (`nav` in `site.ts`);
+the footer carries the full list (`footerNav`). Plus `sitemap.xml`, `robots.txt`,
+`not-found`, and a floating WhatsApp button / mobile sticky CTA bar.
 
 ## No backend
 
