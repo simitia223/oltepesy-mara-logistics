@@ -74,6 +74,13 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
   const rating = Number(body.rating);
   const text = String(body.text ?? "").trim();
 
+  // Reviews publish instantly, so drop obvious spam/abuse silently.
+  const blob = `${name} ${business} ${text}`.toLowerCase();
+  const blocked =
+    /\b(viagra|casino|crypto\s*giveaway|porn|nigger|faggot|f\W*u\W*c\W*k\s*you)\b/i.test(blob) ||
+    /(https?:\/\/|www\.)\S+/i.test(blob); // no links in reviews
+  if (blocked) return json({ ok: true }); // pretend success, drop
+
   if (name.length < 2 || name.length > 60)
     return json({ error: "Please enter your name." }, 400);
   if (business.length > 80)
@@ -90,12 +97,6 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
     return json({ error: "You've just submitted a review — thank you. Please try again later." }, 429);
   }
 
-  // Cap pending queue so KV can't be flooded.
-  const pending = await listReviews(env, "pending");
-  if (pending.length >= 100) {
-    return json({ error: "We're catching up on reviews right now. Please try again soon." }, 503);
-  }
-
   const createdAt = new Date().toISOString();
   const id = `${createdAt}-${crypto.randomUUID().slice(0, 8)}`;
   const review: Review = {
@@ -105,7 +106,8 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
     rating,
     text,
     createdAt,
-    status: "pending",
+    // Published immediately. The owner can remove any review from /review-admin.
+    status: "approved",
   };
 
   await env.REVIEWS.put(`review:${id}`, JSON.stringify(review));

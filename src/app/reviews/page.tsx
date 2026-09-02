@@ -16,7 +16,7 @@ export default function ReviewsPage() {
       <PageHeader
         eyebrow="Reviews"
         title="What Mara businesses say."
-        intro="Reviews are submitted by customers and checked against our delivery records before they're published — we don't write them, edit them or filter genuine feedback."
+        intro="Every review here is written by a customer and published straight away — we don't write them, edit them or filter genuine feedback."
       />
 
       <Section>

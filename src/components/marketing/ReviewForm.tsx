@@ -53,11 +53,11 @@ export function ReviewForm() {
           <Check className="h-5 w-5" aria-hidden />
         </span>
         <h3 className="mt-4 font-display text-lg font-semibold text-fg">
-          Thank you — review received.
+          Thank you — your review is live.
         </h3>
         <p className="mt-2 text-sm text-muted">
-          We check each review against our delivery records before it goes live,
-          so it may take a day or two to appear.
+          It&apos;s on the reviews page now. Refresh to see it alongside the
+          others.
         </p>
       </div>
     );
@@ -163,8 +163,8 @@ export function ReviewForm() {
         {state === "sending" ? "Sending…" : "Submit Review"}
       </Button>
       <p className="text-xs text-muted">
-        Reviews are checked against our delivery records before they&apos;re
-        published. We don&apos;t edit or filter genuine feedback.
+        Your review is published straight away. We don&apos;t edit or filter
+        genuine feedback.
       </p>
     </form>
   );
