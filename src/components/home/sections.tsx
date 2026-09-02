@@ -85,9 +85,10 @@ export function Problem() {
         </div>
         <Reveal delay={120}>
           <Photo
-            alt="Hospitality supplies being loaded for the trip to the Maasai Mara"
+            src="/photos/supplies-loading.svg"
+            alt="Cartons, crates and water being loaded outside a supermarket in Nairobi or Narok for the trip to the Maasai Mara"
             brief="Supplies — cartons, crates, water — being loaded outside a supermarket in Nairobi or Narok."
-            className="aspect-[3/2] rounded-2xl sm:aspect-[4/5]"
+            className="aspect-[3/2] rounded-2xl border border-line"
           />
         </Reveal>
       </div>
@@ -235,9 +236,10 @@ export function Proof() {
       <div className="grid gap-12 lg:grid-cols-[0.85fr_1fr] lg:items-center">
         <Reveal>
           <Photo
+            src="/photos/delivery-handover.svg"
             alt="A camp manager receiving and checking a delivery in the Maasai Mara"
             brief="A manager signing for a delivery at a camp gate; crates on the vehicle behind."
-            className="aspect-[3/2] rounded-2xl"
+            className="aspect-[3/2] rounded-2xl border border-line"
           />
         </Reveal>
         <div>

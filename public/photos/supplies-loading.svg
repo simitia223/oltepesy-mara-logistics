@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" role="img" aria-label="Supplies being loaded outside a supermarket for the trip to the Maasai Mara">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2a1c12"/>
+      <stop offset="0.45" stop-color="#1a1410"/>
+      <stop offset="1" stop-color="#100d0b"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="0.72" cy="0.42" r="0.55">
+      <stop offset="0" stop-color="#d98b3a" stop-opacity="0.55"/>
+      <stop offset="0.5" stop-color="#cf7a4a" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#cf7a4a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="carton" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c9a273"/>
+      <stop offset="1" stop-color="#a37f52"/>
+    </linearGradient>
+    <linearGradient id="cartonB" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#b98b63"/>
+      <stop offset="1" stop-color="#8f6a48"/>
+    </linearGradient>
+  </defs>
+
+  <!-- sky -->
+  <rect width="900" height="600" fill="url(#sky)"/>
+  <rect width="900" height="600" fill="url(#sun)"/>
+  <circle cx="648" cy="252" r="46" fill="#e9b877" opacity="0.5"/>
+
+  <!-- distant acacia -->
+  <g fill="#0c0a08" opacity="0.8">
+    <rect x="126" y="300" width="4" height="70"/>
+    <path d="M128 306c-22 0-38 8-38 15 0 2 1 3 2 5 6-5 18-8 34-8s28 3 34 8c1-2 2-3 2-5 0-7-16-15-34-15z"/>
+  </g>
+
+  <!-- ground -->
+  <rect x="0" y="404" width="900" height="196" fill="#0c0a08"/>
+  <rect x="0" y="404" width="900" height="3" fill="#d98b3a" opacity="0.25"/>
+
+  <!-- delivery vehicle (right) -->
+  <g>
+    <rect x="612" y="250" width="250" height="168" rx="6" fill="#171310"/>
+    <rect x="612" y="250" width="250" height="168" rx="6" fill="none" stroke="#3a2f26" stroke-width="2"/>
+    <!-- open rear door -->
+    <rect x="624" y="266" width="150" height="140" fill="#0d0b09"/>
+    <line x1="699" y1="266" x2="699" y2="406" stroke="#2a2119" stroke-width="2"/>
+    <!-- wheels -->
+    <circle cx="672" cy="418" r="26" fill="#0a0908"/>
+    <circle cx="672" cy="418" r="12" fill="#1c1712"/>
+    <circle cx="812" cy="418" r="26" fill="#0a0908"/>
+    <circle cx="812" cy="418" r="12" fill="#1c1712"/>
+  </g>
+
+  <!-- pallet -->
+  <g fill="#5b4632">
+    <rect x="150" y="392" width="330" height="14"/>
+    <rect x="160" y="380" width="18" height="12"/>
+    <rect x="306" y="380" width="18" height="12"/>
+    <rect x="452" y="380" width="18" height="12"/>
+  </g>
+
+  <!-- stacked cartons -->
+  <g>
+    <rect x="168" y="300" width="112" height="80" fill="url(#carton)"/>
+    <rect x="168" y="300" width="112" height="80" fill="none" stroke="#7a5c3c" stroke-width="1.5"/>
+    <rect x="214" y="300" width="20" height="80" fill="#8a6a45" opacity="0.5"/>
+    <line x1="168" y1="322" x2="280" y2="322" stroke="#7a5c3c" stroke-width="2"/>
+
+    <rect x="290" y="316" width="96" height="64" fill="url(#cartonB)"/>
+    <rect x="290" y="316" width="96" height="64" fill="none" stroke="#6b503a" stroke-width="1.5"/>
+    <line x1="290" y1="332" x2="386" y2="332" stroke="#6b503a" stroke-width="2"/>
+
+    <rect x="196" y="232" width="96" height="68" fill="url(#cartonB)"/>
+    <rect x="196" y="232" width="96" height="68" fill="none" stroke="#6b503a" stroke-width="1.5"/>
+    <line x1="244" y1="232" x2="244" y2="300" stroke="#6b503a" stroke-width="2"/>
+  </g>
+
+  <!-- slatted crates -->
+  <g fill="#8a6a45">
+    <rect x="392" y="326" width="86" height="54"/>
+  </g>
+  <g stroke="#5b4632" stroke-width="4">
+    <line x1="398" y1="332" x2="398" y2="374"/>
+    <line x1="416" y1="332" x2="416" y2="374"/>
+    <line x1="434" y1="332" x2="434" y2="374"/>
+    <line x1="452" y1="332" x2="452" y2="374"/>
+    <line x1="470" y1="332" x2="470" y2="374"/>
+  </g>
+
+  <!-- water pack -->
+  <g>
+    <rect x="500" y="336" width="92" height="44" fill="#26313a" opacity="0.85"/>
+    <rect x="500" y="336" width="92" height="44" fill="none" stroke="#3f5560" stroke-width="1.5"/>
+    <g fill="#3a5560" opacity="0.6">
+      <rect x="508" y="344" width="14" height="28"/>
+      <rect x="526" y="344" width="14" height="28"/>
+      <rect x="544" y="344" width="14" height="28"/>
+      <rect x="562" y="344" width="14" height="28"/>
+    </g>
+  </g>
+
+  <!-- worker lifting a box -->
+  <g fill="#0c0a08">
+    <circle cx="556" cy="286" r="13"/>
+    <path d="M540 300h32l6 60h-44z"/>
+    <rect x="536" y="308" width="60" height="34" rx="3" fill="url(#carton)"/>
+    <rect x="536" y="308" width="60" height="34" rx="3" fill="none" stroke="#7a5c3c" stroke-width="1.5"/>
+    <path d="M544 360l-6 44h10l8-40zM572 360l6 44h-10l-8-40z"/>
+  </g>
+
+  <!-- placeholder tag -->
+  <g opacity="0.7">
+    <rect x="28" y="536" width="196" height="30" rx="6" fill="#0c0a08" stroke="#3a2f26" stroke-width="1"/>
+    <text x="42" y="556" font-family="system-ui, sans-serif" font-size="13" letter-spacing="2" fill="#9a9083">PLACEHOLDER IMAGE</text>
+  </g>
+</svg>

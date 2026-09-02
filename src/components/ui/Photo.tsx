@@ -32,6 +32,21 @@ export function Photo({
   variant?: "block" | "background";
 }) {
   if (src) {
+    // SVG assets (incl. our brand placeholder illustrations) render as a plain
+    // <img> — next/image's optimizer rejects SVG and adds nothing for a vector.
+    if (src.endsWith(".svg")) {
+      return (
+        <div className={`relative overflow-hidden ${className}`}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={src}
+            alt={alt}
+            loading={priority ? "eager" : "lazy"}
+            className={`absolute inset-0 h-full w-full object-cover ${imgClassName}`}
+          />
+        </div>
+      );
+    }
     return (
       <div className={`relative overflow-hidden ${className}`}>
         <Image
