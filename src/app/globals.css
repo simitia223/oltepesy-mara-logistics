@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #0b0a09;
+  --color-ink-soft: #121110;
+  --color-surface: #1a1815;
+  --color-surface-2: #221f1b;
+  --color-line: rgba(231, 216, 191, 0.1);
+  --color-line-strong: rgba(231, 216, 191, 0.2);
+
+  --color-fg: #ece4d6;
+  --color-muted: #9a9083;
+  --color-sand: #e7d8bf;
+
+  --color-clay: #cf7a4a;
+  --color-clay-soft: #dc8a54;
+  --color-clay-dim: rgba(207, 122, 74, 0.14);
+  --color-acacia: #7c9a68;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display), var(--font-inter), ui-sans-serif, sans-serif;
+
+  --radius-xl: 1.25rem;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-ink);
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-clay);
+  color: #1c1108;
+}
+
+.bg-grid {
+  background-image:
+    linear-gradient(to right, var(--color-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--color-line) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+}
+
+.glow-clay {
+  background: radial-gradient(
+    circle at center,
+    rgba(207, 122, 74, 0.22),
+    transparent 70%
+  );
+}
+
+.text-gradient {
+  background: linear-gradient(180deg, #fff 0%, var(--color-sand) 55%, var(--color-clay-soft) 130%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Route line that draws itself */
+@keyframes route-dash {
+  to {
+    stroke-dashoffset: -1000;
+  }
+}
+.route-flow {
+  stroke-dasharray: 8 8;
+  animation: route-dash 30s linear infinite;
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 28s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .route-flow,
+  .animate-marquee {
+    animation: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
