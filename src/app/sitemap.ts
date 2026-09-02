@@ -1,6 +1,9 @@
 import type { MetadataRoute } from "next";
 import { site, nav, primaryCta } from "@/lib/site";
 
+// Required for `output: "export"` — emit as a static file at build time.
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
   const routes = [...nav, primaryCta];
