@@ -56,7 +56,23 @@ Nav is `Home / Services / How It Works / Business / FAQ` (`nav` in `site.ts`);
 the footer carries the full list (`footerNav`). Plus `sitemap.xml`, `robots.txt`,
 `not-found`, and a floating WhatsApp button / mobile sticky CTA bar.
 
-## No backend
+## Reviews (Cloudflare Pages Functions + KV)
+
+`/reviews` lets customers submit a rating + review; approved ones show on the
+reviews page and the home page. Backed by `functions/api/` + a KV namespace
+(`wrangler.toml` → binding `REVIEWS`).
+
+- `GET  /api/reviews` — approved reviews + average (public)
+- `POST /api/reviews` — new review → stored **pending** (honeypot, per-IP
+  cooldown, validation)
+- `/api/admin` — list / approve / reject, token-gated
+- **Moderate at `/review-admin`** — paste the token, load, approve or reject.
+  The token lives in KV, not in git:
+  `npx wrangler kv key put --namespace-id <id> "config:admin-token" "<token>" --remote`
+
+Nothing is published until it's approved.
+
+## Everything else has no backend
 
 - **Contact form** opens the visitor's email client (`mailto:`), with a WhatsApp
   fallback.
