@@ -51,17 +51,28 @@ export function ButtonLink({
   className = "",
   children,
   external,
-}: CommonProps & { href: string; external?: boolean }) {
+  onClick,
+}: CommonProps & {
+  href: string;
+  external?: boolean;
+  onClick?: () => void;
+}) {
   const cn = `${base} ${variants[variant]} ${sizes[size]} ${className}`;
   if (external) {
     return (
-      <a href={href} target="_blank" rel="noopener noreferrer" className={cn}>
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={cn}
+        onClick={onClick}
+      >
         {children}
       </a>
     );
   }
   return (
-    <Link href={href} className={cn}>
+    <Link href={href} className={cn} onClick={onClick}>
       {children}
     </Link>
   );

@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "deploy": "next build && npx --yes wrangler pages deploy out --project-name oltepesy-mara-logistics"
   },
   "dependencies": {
     "lucide-react": "^1.39.0",

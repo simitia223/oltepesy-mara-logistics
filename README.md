@@ -63,19 +63,18 @@ Copy, services, FAQs, pricing bands, etc. live in `src/lib/content.ts`.
 
 ## Deploy
 
-The site is fully static (every route prerenders). Any of these work:
+Live at **https://main.oltepesy-mara-logistics.pages.dev** (Cloudflare Pages).
 
-**Vercel (no Git needed):**
+`next build` emits a fully static bundle to `out/` (`output: "export"` in
+`next.config.ts`). Deploy = build + direct-upload that folder:
 
 ```bash
-npm i -g vercel
-vercel            # first run: link/create project, deploys a preview
-vercel --prod     # promote to production
+npm run deploy
 ```
 
-**Git host (Cloudflare Pages / Netlify / Vercel dashboard):**
-push this repo to GitHub, connect it, build command `npm run build`, output is
-handled automatically for Next.js.
+First run only: `npx wrangler login` (opens browser to authorise Cloudflare).
+After that, `npm run deploy` builds and pushes a new version every time.
 
-**Custom domain:** add `oltepesymaralogistics.co.ke` in the host's dashboard,
-then set the DNS records it gives you at your registrar. HTTPS is automatic.
+**Custom domain:** in the Cloudflare dashboard → Pages project
+`oltepesy-mara-logistics` → *Custom domains* → add `oltepesymaralogistics.co.ke`,
+then set the DNS records it shows at the `.co.ke` registrar. HTTPS is automatic.

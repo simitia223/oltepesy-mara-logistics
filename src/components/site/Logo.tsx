@@ -1,10 +1,17 @@
 import Link from "next/link";
 import { site } from "@/lib/site";
 
-export function Logo({ className = "" }: { className?: string }) {
+export function Logo({
+  className = "",
+  onNavigate,
+}: {
+  className?: string;
+  onNavigate?: () => void;
+}) {
   return (
     <Link
       href="/"
+      onClick={onNavigate}
       className={`group inline-flex items-center gap-2.5 ${className}`}
       aria-label={`${site.name} home`}
     >

@@ -20,15 +20,13 @@ export function Header() {
   }, []);
 
   useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
-
-  useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
   }, [open]);
+
+  const closeMenu = () => setOpen(false);
 
   return (
     <header
@@ -39,7 +37,7 @@ export function Header() {
       }`}
     >
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-5 sm:px-8">
-        <Logo />
+        <Logo onNavigate={closeMenu} />
 
         <nav className="hidden items-center gap-0.5 xl:flex">
           {nav.map((item) => {
@@ -102,18 +100,25 @@ export function Header() {
               <Link
                 key={item.href}
                 href={item.href}
+                onClick={closeMenu}
                 className="rounded-lg px-3 py-3 text-lg text-fg/90 hover:bg-surface"
               >
                 {item.label}
               </Link>
             ))}
-            <ButtonLink href={primaryCta.href} size="lg" className="mt-4 w-full">
+            <ButtonLink
+              href={primaryCta.href}
+              size="lg"
+              className="mt-4 w-full"
+              onClick={closeMenu}
+            >
               {primaryCta.label}
             </ButtonLink>
             <a
               href={whatsappLink()}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={closeMenu}
               className="mt-3 inline-flex w-full items-center justify-center rounded-full border border-line-strong px-5 py-3 text-sm font-medium text-fg"
             >
               Chat on WhatsApp

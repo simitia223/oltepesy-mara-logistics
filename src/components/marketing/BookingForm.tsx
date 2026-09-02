@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { site, whatsappLink } from "@/lib/site";
 
@@ -39,13 +39,8 @@ const inputCls =
 
 export function BookingForm() {
   const [form, setForm] = useState<Form>(empty);
-  const [sent, setSent] = useState(false);
-
-  const reference = useMemo(() => {
-    const year = new Date().getFullYear();
-    const n = Math.floor(1000 + Math.random() * 9000);
-    return `OLP-${year}-${n}`;
-  }, []);
+  const [reference, setReference] = useState<string | null>(null);
+  const sent = reference !== null;
 
   const set =
     (k: keyof Form) =>
@@ -56,7 +51,7 @@ export function BookingForm() {
     ) =>
       setForm((f) => ({ ...f, [k]: e.target.value }));
 
-  const summary = `Delivery request — ${reference}
+  const summary = `Delivery request — ${reference ?? ""}
 
 Name: ${form.name || "—"}
 Business: ${form.business || "—"}
@@ -72,7 +67,10 @@ ${form.details || "—"}`;
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setSent(true);
+    // Display-only reference — a real booking id must be issued server-side.
+    const year = new Date().getFullYear();
+    const n = Math.floor(1000 + Math.random() * 9000);
+    setReference(`OLP-${year}-${n}`);
   };
 
   if (sent) {
@@ -108,7 +106,7 @@ ${form.details || "—"}`;
         </div>
         <button
           type="button"
-          onClick={() => setSent(false)}
+          onClick={() => setReference(null)}
           className="mt-4 text-xs text-muted underline underline-offset-4 hover:text-fg"
         >
           Edit the request
