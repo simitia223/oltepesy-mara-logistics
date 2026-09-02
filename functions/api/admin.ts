@@ -18,11 +18,13 @@ const json = (data: unknown, status = 200) =>
 
 function authed(request: Request, env: Env) {
   const url = new URL(request.url);
-  const token =
+  const token = (
     url.searchParams.get("token") ||
     request.headers.get("x-admin-token") ||
-    "";
-  return Boolean(env.ADMIN_TOKEN) && token === env.ADMIN_TOKEN;
+    ""
+  ).trim();
+  const expected = (env.ADMIN_TOKEN ?? "").trim();
+  return expected.length > 0 && token === expected;
 }
 
 async function allReviews(env: Env) {
